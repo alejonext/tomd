@@ -4,10 +4,6 @@ FROM ubuntu:latest
 ENV PERSISTENT_DEPS \
     graphviz \
     python \
-    #py2-pip \
-    #sed \
-    #ttf-droid \
-    #ttf-droid-nonlatin \
     pandoc \
     nodejs
 
@@ -26,7 +22,7 @@ WORKDIR /srv/app
 # Run the image as a non-root user
 # RUN adduser -D node
 # USER node
-
+RUN npm install
 # Run the app.  CMD is required to run on Heroku
 # $PORT is set by Heroku
 CMD npm start -PORT	$PORT
