@@ -1,25 +1,32 @@
 #Grab the latest alpine image
-FROM alpine:latest
+FROM ubuntu:latest
 
-# Install python and pip
-RUN apk add --no-cache --update python3 py3-pip bash
-ADD ./webapp/requirements.txt /tmp/requirements.txt
+ENV PERSISTENT_DEPS \
+    graphviz \
+    python \
+    #py2-pip \
+    #sed \
+    #ttf-droid \
+    #ttf-droid-nonlatin \
+    pandoc \
+    nodejs
 
-# Install dependencies
-RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
+# Install/Build Packages
+RUN apt update && \
+	apt upgrade --yes && \
+    apt install --yes $PERSISTENT_DEPS
 
 # Add our code
-ADD ./webapp /opt/webapp/
-WORKDIR /opt/webapp
+ADD ./ /srv/app/
+WORKDIR /srv/app
 
 # Expose is NOT supported by Heroku
 # EXPOSE 5000 		
 
 # Run the image as a non-root user
-RUN adduser -D myuser
-USER myuser
+# RUN adduser -D node
+# USER node
 
 # Run the app.  CMD is required to run on Heroku
-# $PORT is set by Heroku			
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
-
+# $PORT is set by Heroku
+CMD npm start -PORT	$PORT

@@ -1,0 +1,28 @@
+{
+  "name": "tomd",
+  "version": "1.0.0",
+  "description": "A docker container to use convert text files",
+  "main": "serve.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejonext/tomd.git"
+  },
+  "keywords": [
+    "docker",
+    "convert",
+    "pandoc"
+  ],
+  "author": "AlejoNext (alejonext@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alejonext/tomd/issues"
+  },
+  "homepage": "https://github.com/alejonext/tomd#readme"
+}
